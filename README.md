@@ -1,287 +1,271 @@
-# 🌍 Multilingual RAG System
+<div align="center">
 
-<p align="center">
+# 🌍 Multilingual RAG System  
+### AI-Powered Document Intelligence with Multilingual Question Answering
 
-![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge\&logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge\&logo=fastapi)
-![Groq](https://img.shields.io/badge/Groq-LLM-black?style=for-the-badge)
-![ChromaDB](https://img.shields.io/badge/ChromaDB-VectorDB-orange?style=for-the-badge)
-![Docker](https://img.shields.io/badge/Docker-Container-2496ED?style=for-the-badge\&logo=docker)
-![HuggingFace](https://img.shields.io/badge/HuggingFace-Deployed-yellow?style=for-the-badge\&logo=huggingface)
-
+<p>
+  <img src="https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi" />
+  <img src="https://img.shields.io/badge/Groq-LLM-black?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/ChromaDB-Vector_DB-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker" />
+  <img src="https://img.shields.io/badge/Hugging_Face-Live-yellow?style=for-the-badge&logo=huggingface" />
 </p>
 
-<p align="center">
-
-# 📚 AI Powered Multilingual Retrieval-Augmented Generation (RAG)
-
-Upload documents • Ask questions in multiple languages • Get AI-powered contextual answers.
-
+<p>
+  <b>Upload documents, ask questions in multiple languages, and get context-aware AI answers using RAG.</b>
 </p>
 
----
+<p>
+  <a href="https://huggingface.co/spaces/Satyamkushwaha3232/multilingual-rag">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Hugging_Face-yellow?style=for-the-badge" />
+  </a>
+  <a href="https://github.com/SatyamKushwaha3232/Multilingual_RAG/releases/tag/v1.0.1">
+    <img src="https://img.shields.io/badge/Release-v1.0.1-green?style=for-the-badge" />
+  </a>
+</p>
 
-# 🚀 Live Demo
-
-### 🌍 Hugging Face Space
-
-https://huggingface.co/spaces/Satyamkushwaha3232/multilingual-rag
-
----
-
-# 📖 About
-
-Multilingual RAG is an AI-powered document question-answering system that allows users to upload PDF documents and ask questions in multiple languages.
-
-Instead of generating answers from general knowledge, the system retrieves the most relevant document chunks using semantic search and then generates contextual answers using a Large Language Model (Groq Llama).
-
-This ensures more accurate, document-grounded responses.
+</div>
 
 ---
 
-# ✨ Features
+## 📌 About The Project
 
-* 🌍 Multilingual Question Answering
-* 📄 PDF Upload
-* 🧠 Retrieval Augmented Generation (RAG)
-* 🔎 Semantic Search
-* 📚 ChromaDB Vector Database
-* 🤖 Groq LLM Integration
-* ⚡ FastAPI Backend
-* 🌐 Interactive Web Interface
-* 🐳 Docker Support
-* 🤗 Hugging Face Deployment
-* 📂 Document Chunking
-* 🔤 Language Detection
-* 🔍 Source References
+**Multilingual RAG System** is an AI-powered document question-answering application built using **Retrieval-Augmented Generation (RAG)**.
 
----
+Users can upload documents and ask questions in different languages. The system retrieves the most relevant document chunks using semantic search and generates accurate answers using **Groq LLM**.
 
-# 🛠 Tech Stack
+This project demonstrates practical implementation of:
 
-## Backend
-
-* FastAPI
-* Python
-
-## AI
-
-* Groq LLM
-* Sentence Transformers
-
-## Vector Database
-
-* ChromaDB
-
-## NLP
-
-* LangDetect
-* Deep Translator
-
-## Deployment
-
-* Docker
-* Hugging Face Spaces
+- Retrieval-Augmented Generation
+- Vector Databases
+- Semantic Search
+- FastAPI APIs
+- Docker Deployment
+- Hugging Face Spaces Hosting
+- Multilingual AI Applications
 
 ---
 
-# 🏗 System Architecture
+## ✨ Features
 
-```
+| Feature | Description |
+|---|---|
+| 📄 PDF Upload | Upload document files for AI-based question answering |
+| 🌍 Multilingual QA | Ask questions in multiple languages |
+| 🧠 RAG Pipeline | Retrieves document context before generating answers |
+| 🔎 Semantic Search | Finds relevant chunks using embeddings |
+| 📚 ChromaDB | Stores and searches vector embeddings |
+| ⚡ Groq LLM | Generates fast contextual AI responses |
+| 🚀 FastAPI | Backend API built with FastAPI |
+| 🐳 Docker | Containerized deployment |
+| 🤗 Hugging Face | Public live deployment |
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+- Python
+- FastAPI
+- Uvicorn
+
+### AI / NLP
+- Groq LLM
+- Sentence Transformers
+- LangDetect
+- Deep Translator
+
+### Vector Database
+- ChromaDB
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+
+### Deployment
+- Docker
+- Hugging Face Spaces
+- GitHub
+
+---
+
+## 🧠 Architecture
+
+```txt
 User
-   │
-   ▼
-Frontend (HTML/CSS/JavaScript)
-   │
-   ▼
+ │
+ ▼
+Frontend UI
+ │
+ ▼
 FastAPI Backend
-   │
-   ▼
+ │
+ ▼
 Document Processor
-   │
-   ▼
-Chunk Generator
-   │
-   ▼
-Sentence Transformers
-   │
-   ▼
+ │
+ ▼
+Text Chunking
+ │
+ ▼
+Sentence Transformer Embeddings
+ │
+ ▼
 ChromaDB Vector Store
-   │
-   ▼
-Retriever
-   │
-   ▼
+ │
+ ▼
+Semantic Retriever
+ │
+ ▼
 Groq LLM
-   │
-   ▼
-Final AI Answer
-```
+ │
+ ▼
+Final Context-Aware Answer
 
----
+1. User uploads PDF
+2. Backend extracts text
+3. Text is split into chunks
+4. Chunks are converted into embeddings
+5. Embeddings are stored in ChromaDB
+6. User asks a question
+7. Relevant chunks are retrieved
+8. Groq LLM generates answer using retrieved context
+9. Answer is displayed with source references
 
-# 📂 Project Structure
-
-```
-Multilingual_RAG
+📂 Folder Structure
+Multilingual_RAG/
 │
-├── backend
+├── backend/
 │   ├── main.py
 │   ├── rag_engine.py
 │   ├── embeddings.py
-│   ├── translator.py
 │   ├── vector_store.py
+│   ├── translator.py
 │   └── document_processor.py
 │
-├── frontend
+├── frontend/
 │   ├── index.html
 │   ├── style.css
 │   └── script.js
 │
-├── data
-├── vector_db
 ├── Dockerfile
 ├── requirements.txt
+├── .dockerignore
+├── .env.example
 └── README.md
-```
 
----
+🚀 Live Demo
 
-# ⚙ Installation
+🌍 Live Project:
+https://huggingface.co/spaces/Satyamkushwaha3232/multilingual-rag
 
-Clone repository
+💻 GitHub Repository:
+https://github.com/SatyamKushwaha3232/Multilingual_RAG
 
-```
+⚙️ Local Setup
+1. Clone Repository
 git clone https://github.com/SatyamKushwaha3232/Multilingual_RAG.git
-```
-
-Go inside project
-
-```
 cd Multilingual_RAG
-```
 
-Install dependencies
+2. Create Virtual Environment
+python -m venv venv
+3. Activate Virtual Environment
+Windows:
+venv\Scripts\activate
+Linux/Mac:
+source venv/bin/activate
 
-```
+4. Install Dependencies
 pip install -r requirements.txt
-```
 
-Run application
+5. Add Environment Variable
+Create .env file:
+GROQ_API_KEY=your_groq_api_key_here
 
-```
+6. Run App
 uvicorn backend.main:app --reload
-```
-
-Open
-
-```
+Open:
 http://localhost:8000
-```
 
----
+🐳 Docker Setup
 
-# 🌐 Deployment
+Build Docker image:
+docker build -t multilingual-rag .
 
-This project is successfully deployed using
+Run container:
+docker run -p 7860:7860 multilingual-rag
 
-* Docker
-* Hugging Face Spaces
+Open:
+http://localhost:7860
 
----
+🔐 Environment Variables
+Variable	Purpose
+GROQ_API_KEY	Used to connect Groq LLM
+GEMINI_API_KEY	Optional fallback key
 
-# 📚 How It Works
+💡 Example Questions
+What is memory organization?
+Explain cache memory in simple language.
+Memory Organization kya hai?
+Summarize this document.
+Explain this topic in Hindi.
 
-1. Upload PDF
-2. Text Extraction
-3. Chunk Generation
-4. Embedding Creation
-5. Store in ChromaDB
-6. Ask Question
-7. Semantic Retrieval
-8. Groq LLM generates contextual answer
-9. Response displayed with source references
+📌 Key Learnings
 
----
+Through this project, I learned:
 
-# 💡 Example Questions
+How RAG systems work
+How embeddings are created
+How vector databases store semantic meaning
+How FastAPI handles backend APIs
+How Docker helps in deployment
+How to deploy AI apps on Hugging Face Spaces
+How to migrate from Gemini to Groq
+How to debug real-world deployment issues
 
-* What is Memory Organization?
-* Explain Cache Memory.
-* CPU Architecture kya hai?
-* Memory Organization in Hindi.
-* Summarize this document.
-* Explain this topic in simple language.
+🏷 Release
 
----
+Latest Release:
+v1.0.1
 
-# 🚀 Future Improvements
+Release includes:
+PDF Upload
+RAG Pipeline
+ChromaDB Vector Search
+Groq LLM Integration
+FastAPI Backend
+Docker Deployment
+Hugging Face Hosting
 
-* Multiple PDF Support
-* Chat History
-* Voice Input
-* Voice Output
-* Authentication
-* Cloud Database
-* Streaming Responses
-* Page Number Citations
-* OCR Support
-* Image Question Answering
+🔮 Future Roadmap
+ Multiple PDF Upload
+ Chat History
+ Page Number Citations
+ OCR Support
+ Voice Input
+ Voice Output
+ Authentication
+ Admin Dashboard
+ Cloud Database
+ Advanced Analytics
+ Streaming Responses
+ Custom Domain
 
----
-
-# 📊 Project Highlights
-
-✅ Multilingual AI
-
-✅ RAG Pipeline
-
-✅ FastAPI
-
-✅ ChromaDB
-
-✅ Sentence Transformers
-
-✅ Groq API
-
-✅ Docker
-
-✅ Hugging Face Deployment
-
----
-
-# 👨‍💻 Developer
-
-## Satyam Kushwaha
+🧑‍💻 Author
+<div align="center">
+Satyam Kushwaha
 
 Aspiring Software Engineer | Full Stack Developer | AI Enthusiast
 
-GitHub
+<p> <a href="https://github.com/SatyamKushwaha3232"> <img src="https://img.shields.io/badge/GitHub-SatyamKushwaha3232-black?style=for-the-badge&logo=github" /> </a> <a href="https://huggingface.co/spaces/Satyamkushwaha3232/multilingual-rag"> <img src="https://img.shields.io/badge/Live_Demo-Hugging_Face-yellow?style=for-the-badge&logo=huggingface" /> </a> </p> </div>
+⭐ Support
 
-https://github.com/SatyamKushwaha3232
-
-LinkedIn
-
-(Add your LinkedIn Profile URL)
-
----
-
-# ⭐ Support
-
-If you found this project useful, please consider giving it a ⭐ on GitHub.
+If you like this project, please give it a ⭐ on GitHub.
 
 It motivates me to build more AI-powered open-source projects.
 
----
+<div align="center">
+Made with ❤️ by Satyam Kushwaha
+</div> ```
 
-# 📜 License
-
-This project is licensed under the MIT License.
-
----
-
-<p align="center">
-
-Made with ❤️ by **Satyam Kushwaha**
-
-</p>
