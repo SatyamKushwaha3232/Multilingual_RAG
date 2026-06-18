@@ -2,10 +2,10 @@ import os
 import re
 import google.generativeai as genai
 
-from embeddings import MultilingualEmbeddings
-from vector_store import VectorStore
-from document_processor import DocumentProcessor
-from translator import MultilingualTranslator
+from backend.embeddings import MultilingualEmbeddings
+from backend.vector_store import VectorStore
+from backend.document_processor import DocumentProcessor
+from backend.translator import MultilingualTranslator
 
 
 class RAGEngine:

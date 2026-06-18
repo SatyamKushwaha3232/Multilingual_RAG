@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import uuid
 
-from rag_engine import RAGEngine
+from backend.rag_engine import RAGEngine
 
 app = FastAPI(title="Multilingual RAG System", version="1.1")
 
