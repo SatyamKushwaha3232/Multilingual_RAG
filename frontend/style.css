@@ -5,19 +5,19 @@
 }
 
 :root {
-    --bg: #f7f4ff;
-    --bg-2: #fff7fb;
+    --bg: #f6fff9;
+    --bg-2: #ecfdf5;
     --sidebar: #ffffff;
     --card: #ffffff;
-    --text: #171326;
-    --muted: #7c748f;
-    --border: #eee8fb;
-    --primary: #7c3aed;
-    --primary-2: #ec4899;
-    --blue: #60a5fa;
+    --text: #06140c;
+    --muted: #5f7668;
+    --border: #d6f7e4;
+    --primary: #00d96f;
+    --primary-2: #16a34a;
+    --blue: #22c55e;
     --danger: #ef4444;
     --success: #22c55e;
-    --shadow: 0 18px 45px rgba(76, 29, 149, 0.10);
+    --shadow: 0 18px 45px rgba(0, 217, 111, 0.14);
 }
 
 body {
@@ -1691,4 +1691,766 @@ select {
         max-width: 90%;
         font-size: 13px;
     }
+}
+
+
+/* =====================================================
+   NEON GREEN LIGHT + DARK THEME OVERRIDE
+   Added/fixed for working theme toggle via body.soft-dark
+===================================================== */
+
+/* LIGHT MODE: soft white + neon green */
+body {
+    background:
+        radial-gradient(circle at 10% 10%, rgba(0, 217, 111, 0.16), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(34, 197, 94, 0.14), transparent 35%),
+        linear-gradient(135deg, var(--bg), var(--bg-2)) !important;
+    color: var(--text);
+}
+
+.login-modal {
+    background:
+        radial-gradient(circle at top left, rgba(0, 217, 111, 0.20), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.18), transparent 35%),
+        #f6fff9 !important;
+}
+
+.login-visual,
+.mini-stat-card,
+.user-box {
+    background:
+        radial-gradient(circle at 50% 35%, rgba(0, 217, 111, 0.14), transparent 35%),
+        linear-gradient(135deg, #ecfdf5, #ffffff) !important;
+}
+
+.brand-icon,
+.user-avatar,
+.top-profile-dot,
+.profile-avatar,
+.menu-btn:hover,
+.menu-btn.active,
+.hero-panel,
+#askButton,
+.upload-label b,
+.settings-tabs button.active,
+.settings-tabs button:hover,
+.switch input:checked + span,
+.message.user .message-body {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2)) !important;
+}
+
+.brand-icon,
+.user-avatar,
+.top-profile-dot,
+.profile-avatar,
+.menu-btn:hover,
+.menu-btn.active,
+#askButton,
+.upload-label b,
+.settings-tabs button.active,
+.settings-tabs button:hover {
+    color: #001b0d !important;
+    box-shadow: 0 16px 36px rgba(0, 217, 111, 0.24) !important;
+}
+
+.menu-btn {
+    color: #31553f !important;
+}
+
+.menu-btn span,
+.feature-icon,
+.welcome-icon,
+.composer-icons button {
+    background: #e9fff1 !important;
+    color: var(--primary-2) !important;
+}
+
+.feature-card,
+.stat-card,
+.upload-main-card,
+.settings-row,
+.profile-card,
+.profile-info-card,
+.search-card,
+.sidebar,
+.welcome-card,
+.message-body,
+.composer,
+.settings-tabs,
+.upload-item,
+.login-shell,
+.login-form-card {
+    border-color: rgba(0, 217, 111, 0.16) !important;
+    box-shadow: var(--shadow) !important;
+}
+
+.primary-btn {
+    background: #052e16 !important;
+    color: #d7ffe6 !important;
+    box-shadow: 0 14px 28px rgba(0, 217, 111, 0.18) !important;
+}
+
+.ghost-btn {
+    color: var(--primary-2) !important;
+    border-color: var(--border) !important;
+}
+
+.hero-panel p {
+    color: #eafff2 !important;
+}
+
+.upload-area {
+    border-color: #a7f3d0 !important;
+    background:
+        radial-gradient(circle at top, rgba(0, 217, 111, 0.10), transparent 36%),
+        #f6fff9 !important;
+}
+
+.upload-area.dragover {
+    border-color: var(--primary) !important;
+    background: #ecfdf5 !important;
+}
+
+/* DARK MODE: black + dark green neon */
+body.soft-dark {
+    --bg: #020806;
+    --bg-2: #03130c;
+    --sidebar: rgba(3, 18, 12, 0.92);
+    --card: rgba(5, 28, 18, 0.92);
+    --text: #eafff2;
+    --muted: #94d3ad;
+    --border: rgba(0, 255, 136, 0.20);
+    --primary: #00ff88;
+    --primary-2: #16a34a;
+    --blue: #10b981;
+    --shadow: 0 20px 55px rgba(0, 255, 136, 0.16);
+
+    background:
+        radial-gradient(circle at 12% 8%, rgba(0, 255, 136, 0.20), transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(22, 163, 74, 0.18), transparent 35%),
+        linear-gradient(135deg, #020806, #03130c, #000000) !important;
+    color: var(--text) !important;
+}
+
+body.soft-dark .login-modal {
+    background:
+        radial-gradient(circle at top left, rgba(0, 255, 136, 0.18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(22, 163, 74, 0.16), transparent 35%),
+        #020806 !important;
+}
+
+body.soft-dark .sidebar,
+body.soft-dark .feature-card,
+body.soft-dark .stat-card,
+body.soft-dark .upload-main-card,
+body.soft-dark .settings-row,
+body.soft-dark .profile-card,
+body.soft-dark .profile-info-card,
+body.soft-dark .search-card,
+body.soft-dark .welcome-card,
+body.soft-dark .message-body,
+body.soft-dark .composer,
+body.soft-dark .settings-tabs,
+body.soft-dark .upload-item,
+body.soft-dark .login-shell,
+body.soft-dark .login-form-card,
+body.soft-dark .loader-card {
+    background: rgba(5, 28, 18, 0.88) !important;
+    border: 1px solid rgba(0, 255, 136, 0.18) !important;
+    color: var(--text) !important;
+    box-shadow: 0 18px 45px rgba(0, 255, 136, 0.12) !important;
+}
+
+body.soft-dark .login-visual,
+body.soft-dark .mini-stat-card,
+body.soft-dark .user-box {
+    background:
+        radial-gradient(circle at 50% 35%, rgba(0, 255, 136, 0.12), transparent 35%),
+        linear-gradient(135deg, rgba(3, 18, 12, 0.92), rgba(5, 28, 18, 0.88)) !important;
+    border: 1px solid rgba(0, 255, 136, 0.16) !important;
+}
+
+body.soft-dark .robot-orb {
+    background: linear-gradient(135deg, rgba(5, 28, 18, 0.95), rgba(0, 255, 136, 0.12)) !important;
+    border: 1px solid rgba(0, 255, 136, 0.20) !important;
+    box-shadow: 0 30px 65px rgba(0, 255, 136, 0.18) !important;
+}
+
+body.soft-dark .floating-chip {
+    background: rgba(5, 28, 18, 0.92) !important;
+    border: 1px solid rgba(0, 255, 136, 0.16) !important;
+}
+
+body.soft-dark input,
+body.soft-dark textarea,
+body.soft-dark select,
+body.soft-dark .login-form-card input {
+    background: rgba(2, 8, 6, 0.92) !important;
+    color: var(--text) !important;
+    border-color: rgba(0, 255, 136, 0.24) !important;
+}
+
+body.soft-dark input::placeholder,
+body.soft-dark textarea::placeholder {
+    color: #75a98b !important;
+}
+
+body.soft-dark .search-card input,
+body.soft-dark #questionInput {
+    color: var(--text) !important;
+}
+
+body.soft-dark .round-icon-btn,
+body.soft-dark #logoutBtn {
+    background: rgba(5, 28, 18, 0.92) !important;
+    color: var(--primary) !important;
+    border: 1px solid rgba(0, 255, 136, 0.18) !important;
+}
+
+body.soft-dark .hero-panel,
+body.soft-dark .primary-btn,
+body.soft-dark .menu-btn.active,
+body.soft-dark .menu-btn:hover,
+body.soft-dark #askButton,
+body.soft-dark .upload-label b,
+body.soft-dark .settings-tabs button.active,
+body.soft-dark .settings-tabs button:hover,
+body.soft-dark .switch input:checked + span,
+body.soft-dark .message.user .message-body {
+    background: linear-gradient(135deg, #00ff88, #16a34a) !important;
+    color: #001b0d !important;
+    box-shadow: 0 18px 45px rgba(0, 255, 136, 0.28) !important;
+}
+
+body.soft-dark .menu-btn {
+    color: #b8f7d0 !important;
+}
+
+body.soft-dark .menu-btn span,
+body.soft-dark .feature-icon,
+body.soft-dark .welcome-icon,
+body.soft-dark .composer-icons button {
+    background: rgba(0, 255, 136, 0.12) !important;
+    color: #00ff88 !important;
+}
+
+body.soft-dark .feature-card p,
+body.soft-dark .topbar p,
+body.soft-dark .chat-header p,
+body.soft-dark .page-title p,
+body.soft-dark .section-title p,
+body.soft-dark .brand p,
+body.soft-dark .mini-stat-card p,
+body.soft-dark .settings-row p,
+body.soft-dark .profile-card p,
+body.soft-dark .upload-item span,
+body.soft-dark .empty-text,
+body.soft-dark .composer-wrap p,
+body.soft-dark .message-title,
+body.soft-dark .info-row span {
+    color: var(--muted) !important;
+}
+
+body.soft-dark .message.user .message-title {
+    color: rgba(0, 27, 13, 0.75) !important;
+}
+
+body.soft-dark .upload-area {
+    border-color: rgba(0, 255, 136, 0.30) !important;
+    background:
+        radial-gradient(circle at top, rgba(0, 255, 136, 0.12), transparent 36%),
+        rgba(2, 8, 6, 0.88) !important;
+}
+
+body.soft-dark .upload-area.dragover {
+    border-color: #00ff88 !important;
+    background: rgba(0, 255, 136, 0.10) !important;
+}
+
+body.soft-dark .suggestion-btn {
+    background: rgba(0, 255, 136, 0.08) !important;
+    color: var(--text) !important;
+    border-color: rgba(0, 255, 136, 0.18) !important;
+}
+
+body.soft-dark .danger-btn,
+body.soft-dark .delete-doc-btn {
+    background: rgba(239, 68, 68, 0.12) !important;
+    color: #fca5a5 !important;
+    border: 1px solid rgba(239, 68, 68, 0.25) !important;
+}
+
+body.soft-dark .divider span,
+body.soft-dark .info-row {
+    border-color: rgba(0, 255, 136, 0.16) !important;
+    background: rgba(0, 255, 136, 0.12) !important;
+}
+
+body.soft-dark .spinner {
+    border-color: rgba(0, 255, 136, 0.16) !important;
+    border-top-color: #5ca583 !important;
+}
+
+/* Better hover polish for both themes */
+.feature-card,
+.stat-card,
+.upload-item,
+.settings-row,
+.profile-card,
+.profile-info-card,
+.menu-btn,
+.suggestion-btn,
+.primary-btn,
+.ghost-btn,
+.danger-btn,
+.round-icon-btn,
+#askButton {
+    transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.feature-card:hover,
+.stat-card:hover,
+.upload-item:hover,
+.settings-row:hover,
+.profile-card:hover,
+.profile-info-card:hover {
+    transform: translateY(-2px);
+}
+
+.menu-btn:hover,
+.primary-btn:hover,
+.ghost-btn:hover,
+.danger-btn:hover,
+.round-icon-btn:hover,
+#askButton:hover {
+    transform: translateY(-1px);
+}
+
+/* FINAL THEME BALANCE FIX */
+
+/* Light mode: more soft, clean, less dark */
+body:not(.soft-dark) {
+    --bg: #f8fffb;
+    --bg-2: #effff6;
+    --text: #07140d;
+    --muted: #5d7165;
+    --border: rgba(177, 223, 194, 0.12);
+    --shadow: 0 18px 45px rgba(153, 231, 214, 0.832);
+}
+
+body:not(.soft-dark) .sidebar,
+body:not(.soft-dark) .feature-card,
+body:not(.soft-dark) .stat-card,
+body:not(.soft-dark) .upload-main-card,
+body:not(.soft-dark) .settings-row,
+body:not(.soft-dark) .profile-card,
+body:not(.soft-dark) .profile-info-card,
+body:not(.soft-dark) .search-card,
+body:not(.soft-dark) .welcome-card,
+body:not(.soft-dark) .message-body,
+body:not(.soft-dark) .composer,
+body:not(.soft-dark) .settings-tabs,
+body:not(.soft-dark) .upload-item {
+    background: rgba(255, 255, 255, 0.82) !important;
+    border: 1px solid rgb(142, 240, 221) !important;
+}
+
+/* Dark mode: darker black-green */
+body.soft-dark {
+    --bg: #000604;
+    --bg-2: #00100a;
+    --text: #eafff2;
+    --muted: #294233;
+    --border: rgba(0, 255, 136, 0.16);
+    --shadow: 0 20px 55px rgba(0, 255, 136, 0.10);
+
+    background:
+        radial-gradient(circle at 12% 8%, rgba(0, 255, 136, 0.14), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(22, 163, 74, 0.10), transparent 35%),
+        linear-gradient(135deg, #000302, #00100a, #000000) !important;
+}
+
+body.soft-dark .sidebar,
+body.soft-dark .feature-card,
+body.soft-dark .stat-card,
+body.soft-dark .upload-main-card,
+body.soft-dark .settings-row,
+body.soft-dark .profile-card,
+body.soft-dark .profile-info-card,
+body.soft-dark .search-card,
+body.soft-dark .welcome-card,
+body.soft-dark .message-body,
+body.soft-dark .composer,
+body.soft-dark .settings-tabs,
+body.soft-dark .upload-item {
+    background: rgba(0, 18, 10, 0.92) !important;
+    border: 1px solid rgba(0, 255, 136, 0.14) !important;
+    box-shadow: 0 18px 45px rgba(0, 255, 136, 0.08) !important;
+}
+
+body.soft-dark .hero-panel {
+    background: linear-gradient(135deg, #46816e78, #bdeed35d) !important;
+}
+
+body.soft-dark .chat-window {
+    background: rgba(0, 12, 7, 0.55) !important;
+}
+/* =====================================================
+   PROFESSIONAL ADVANCED GREEN THEME OVERRIDE
+   Light: soft mint + emerald
+   Dark: deep graphite green + neon emerald
+===================================================== */
+
+:root {
+    --bg: #f6fbf8;
+    --bg-2: #edf7f1;
+    --sidebar: rgba(255, 255, 255, 0.88);
+    --card: rgba(255, 255, 255, 0.86);
+    --text: #0b1f17;
+    --muted: #64786d;
+    --border: rgba(16, 185, 129, 0.14);
+
+    --primary: #10b981;
+    --primary-2: #059669;
+    --primary-3: #34d399;
+    --accent: #0f766e;
+
+    --surface-soft: rgba(236, 253, 245, 0.70);
+    --surface-strong: rgba(255, 255, 255, 0.92);
+
+    --danger: #ef4444;
+    --success: #10b981;
+    --shadow: 0 18px 45px rgba(15, 118, 110, 0.10);
+}
+
+/* LIGHT MODE BASE */
+body:not(.soft-dark) {
+    background:
+        radial-gradient(circle at 10% 8%, rgba(52, 211, 153, 0.20), transparent 30%),
+        radial-gradient(circle at 90% 18%, rgba(16, 185, 129, 0.14), transparent 32%),
+        linear-gradient(135deg, #f9fffb, #effaf4) !important;
+    color: var(--text);
+}
+
+/* DARK MODE BASE */
+body.soft-dark {
+    --bg: #020706;
+    --bg-2: #06120d;
+    --sidebar: rgba(3, 12, 9, 0.92);
+    --card: rgba(4, 18, 13, 0.90);
+    --text: #ecfff5;
+    --muted: #93b8a6;
+    --border: rgba(52, 211, 153, 0.14);
+
+    --primary: #22c55e;
+    --primary-2: #0ea55a;
+    --primary-3: #86efac;
+    --accent: #2dd4bf;
+
+    --surface-soft: rgba(5, 35, 23, 0.75);
+    --surface-strong: rgba(2, 14, 10, 0.94);
+
+    --shadow: 0 20px 55px rgba(34, 197, 94, 0.10);
+
+    background:
+        radial-gradient(circle at 12% 8%, rgba(34, 197, 94, 0.14), transparent 30%),
+        radial-gradient(circle at 88% 20%, rgba(45, 212, 191, 0.08), transparent 34%),
+        linear-gradient(135deg, #010302, #04100b, #000000) !important;
+    color: var(--text);
+}
+
+/* COMMON SURFACES */
+.sidebar,
+.feature-card,
+.stat-card,
+.upload-main-card,
+.settings-row,
+.profile-card,
+.profile-info-card,
+.search-card,
+.welcome-card,
+.message-body,
+.composer,
+.settings-tabs,
+.upload-item,
+.login-form-card,
+.login-shell {
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow) !important;
+    color: var(--text) !important;
+}
+
+/* SIDEBAR */
+.sidebar {
+    background: var(--sidebar) !important;
+}
+
+.brand-icon,
+.user-avatar,
+.top-profile-dot,
+.profile-avatar {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2)) !important;
+    color: #ffffff !important;
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.24) !important;
+}
+
+/* MENU BUTTONS */
+.menu-btn {
+    color: var(--muted) !important;
+    background: transparent !important;
+}
+
+.menu-btn span {
+    background: rgba(16, 185, 129, 0.10) !important;
+    color: var(--primary) !important;
+}
+
+.menu-btn:hover,
+.menu-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2)) !important;
+    color: #ffffff !important;
+    box-shadow: 0 16px 34px rgba(16, 185, 129, 0.24) !important;
+}
+
+.menu-btn:hover span,
+.menu-btn.active span {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #ffffff !important;
+}
+
+/* FEATURE ICONS */
+.feature-icon,
+.welcome-icon,
+.menu-btn span,
+.composer-icons button {
+    background: rgba(16, 185, 129, 0.10) !important;
+    color: var(--primary) !important;
+}
+
+/* HERO SECTION - PROFESSIONAL, NOT TOO NEON */
+.hero-panel {
+    background:
+        radial-gradient(circle at 85% 35%, rgba(255, 255, 255, 0.20), transparent 24%),
+        linear-gradient(135deg, #10b981, #059669) !important;
+    color: #ffffff !important;
+    box-shadow: 0 24px 60px rgba(5, 150, 105, 0.24) !important;
+}
+
+body.soft-dark .hero-panel {
+    background:
+        radial-gradient(circle at 85% 35%, rgba(134, 239, 172, 0.12), transparent 25%),
+        linear-gradient(135deg, #063b27, #0f8f54) !important;
+    color: #ecfff5 !important;
+}
+
+.hero-panel h1,
+.hero-panel p {
+    color: inherit !important;
+}
+
+.hero-badge {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #ffffff !important;
+}
+
+/* BUTTONS */
+.primary-btn,
+#askButton {
+    background: linear-gradient(135deg, #0b1f17, #064e3b) !important;
+    color: #ffffff !important;
+    box-shadow: 0 14px 32px rgba(6, 78, 59, 0.24) !important;
+}
+
+body.soft-dark .primary-btn,
+body.soft-dark #askButton {
+    background: linear-gradient(135deg, #22c55e, #0ea55a) !important;
+    color: #02110a !important;
+    box-shadow: 0 16px 38px rgba(34, 197, 94, 0.26) !important;
+}
+
+.ghost-btn,
+.round-icon-btn {
+    background: var(--surface-strong) !important;
+    color: var(--primary) !important;
+    border: 1px solid var(--border) !important;
+}
+
+.danger-btn,
+.delete-doc-btn {
+    background: rgba(239, 68, 68, 0.10) !important;
+    color: #ef4444 !important;
+    border: 1px solid rgba(239, 68, 68, 0.18) !important;
+}
+
+/* INPUTS */
+input,
+textarea,
+select {
+    background: var(--surface-strong) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--muted) !important;
+}
+
+.search-card {
+    background: var(--surface-strong) !important;
+}
+
+.search-card span {
+    color: var(--primary) !important;
+}
+
+/* CHAT */
+.chat-window {
+    background: rgba(255, 255, 255, 0.34) !important;
+    border: 1px solid var(--border) !important;
+}
+
+body.soft-dark .chat-window {
+    background: rgba(1, 10, 7, 0.56) !important;
+}
+
+.message.user .message-body {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2)) !important;
+    color: #ffffff !important;
+}
+
+body.soft-dark .message.user .message-body {
+    color: #04110b !important;
+}
+
+.message-title {
+    color: var(--muted) !important;
+}
+
+/* MINI CARDS */
+.mini-stat-card,
+.user-box {
+    background: var(--surface-soft) !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* UPLOAD */
+.upload-area {
+    background:
+        radial-gradient(circle at top, rgba(16, 185, 129, 0.10), transparent 36%),
+        var(--surface-soft) !important;
+    border-color: rgba(16, 185, 129, 0.22) !important;
+}
+
+.upload-area.dragover {
+    border-color: var(--primary) !important;
+    background: rgba(16, 185, 129, 0.12) !important;
+}
+
+.upload-label b {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2)) !important;
+    color: white !important;
+}
+
+/* SETTINGS */
+.settings-tabs button {
+    color: var(--muted) !important;
+}
+
+.settings-tabs button.active,
+.settings-tabs button:hover {
+    background: linear-gradient(135deg, var(--primary), var(--primary-2)) !important;
+    color: #ffffff !important;
+}
+
+/* STATUS */
+.status-message.success {
+    background: rgba(16, 185, 129, 0.12) !important;
+    color: #047857 !important;
+}
+
+body.soft-dark .status-message.success {
+    color: #86efac !important;
+}
+
+/* LINKS / TEXT */
+.topbar h2 span,
+.cloud-icon,
+.text-btn {
+    color: var(--primary) !important;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(16, 185, 129, 0.06);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.42);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.62);
+}
+
+/* PREMIUM SEARCH BAR FIX */
+
+.search-card {
+    border: none !important;
+    background: rgba(255,255,255,0.04) !important;
+    backdrop-filter: blur(20px);
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.search-card input,
+.search-card input:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.search-card:focus-within {
+    border: 1px solid rgba(34,197,94,0.25) !important;
+    box-shadow:
+        0 0 0 3px rgba(34,197,94,0.08),
+        0 15px 40px rgba(34,197,94,0.12);
+}
+/* FORCE REMOVE SEARCH BAR BLACK BORDER */
+
+.search-card,
+.search-box,
+.search-wrapper,
+.search-container {
+    border: none !important;
+    outline: none !important;
+}
+
+.search-card input,
+.search-box input,
+.search-wrapper input,
+.search-container input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+input[type="text"] {
+    border: none !important;
+    outline: none !important;
+}
+
+input[type="text"]:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }

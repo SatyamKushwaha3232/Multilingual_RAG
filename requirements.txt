@@ -10,3 +10,4 @@ python-docx
 langdetect
 deep-translator
 jinja2
+google-generativeai

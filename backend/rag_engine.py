@@ -1,23 +1,33 @@
+import os
+import re
+import google.generativeai as genai
+
 from embeddings import MultilingualEmbeddings
 from vector_store import VectorStore
 from document_processor import DocumentProcessor
 from translator import MultilingualTranslator
 
-import os
-import re
-import json
-import requests
-import json
-
 
 class RAGEngine:
     def __init__(self, persist_directory="./vector_db"):
         print("🚀 Initializing RAG Engine...")
+
         self.embeddings = MultilingualEmbeddings()
         self.vector_store = VectorStore(persist_directory=persist_directory)
         self.doc_processor = DocumentProcessor()
         self.translator = MultilingualTranslator()
         self.embedding_dim = self.embeddings.get_dimension()
+
+        api_key = os.getenv("GEMINI_API_KEY")
+
+        if api_key:
+            genai.configure(api_key=api_key)
+            self.gemini_model = genai.GenerativeModel("gemini-2.0-flash-lite")
+            print("✅ Gemini connected!")
+        else:
+            self.gemini_model = None
+            print("⚠️ GEMINI_API_KEY missing!")
+
         print(f"✅ RAG Engine ready! Dim: {self.embedding_dim}")
 
     def add_document(self, file_path, original_filename=None):
@@ -82,16 +92,12 @@ class RAGEngine:
             "total_documents": self.vector_store.get_count()
         }
 
-    def _retrieve_context(self, question, n_results=4):
+    def _retrieve_context(self, question, n_results=2):
         if self.vector_store.get_count() == 0:
             return None, None, None, "Pehle document upload karo!"
 
         try:
             question_embedding = self.embeddings.embed_query(question)
-        except Exception as e:
-            return None, None, None, f"Embedding error: {e}"
-
-        try:
             results = self.vector_store.search(
                 query_embedding=question_embedding,
                 n_results=n_results
@@ -134,27 +140,46 @@ class RAGEngine:
         language_name = language_names.get(target_language, "English")
 
         return f"""
-    You are a helpful multilingual RAG assistant.
+You are a helpful multilingual RAG assistant.
 
-    Use ONLY the uploaded document context to answer.
-    If the answer is not available in the context, say clearly:
-    "I could not find this information in the uploaded documents."
+Use ONLY the uploaded document context to answer.
+If the answer is not available in the context, say clearly:
+"I could not find this information in the uploaded documents."
 
-    IMPORTANT:
-    You MUST answer only in {language_name}.
-    Do not answer in English unless the selected language is English.
+IMPORTANT:
+You MUST answer only in {language_name}.
+Do not answer in English unless the selected language is English.
 
-    Document Context:
-    {context}
+Document Context:
+{context}
 
-    User Question:
-    {question}
+User Question:
+{question}
 
-    Give a clear and useful answer.
-    Use bullet points when helpful.
-    """
+Give a clear and useful answer.
+Use bullet points when helpful.
+"""
 
-    def query(self, question, target_language="en", n_results=4):
+    def _generate_llm_answer(self, question, context_docs, target_language="en"):
+        prompt = self._build_prompt(
+            question=question,
+            context_docs=context_docs,
+            target_language=target_language
+        )
+
+        try:
+            if not self.gemini_model:
+                return "Gemini API key missing. Please set GEMINI_API_KEY."
+
+            response = self.gemini_model.generate_content(prompt)
+            answer = response.text or "No response from Gemini."
+
+            return answer
+
+        except Exception as e:
+            return f"Gemini error: {e}"
+
+    def query(self, question, target_language="en", n_results=2):
         print(f"\n❓ Query: {question} | Lang: {target_language}")
 
         try:
@@ -199,130 +224,17 @@ class RAGEngine:
         )
 
         if error:
-            if target_language != "en":
-                try:
-                    error = self.translator.translate(
-                        error,
-                        target_lang=target_language,
-                        source_lang="auto"
-                    )
-                except Exception:
-                    pass
-
             yield error
             return
 
-        # English ke liye direct English prompt
-        prompt = self._build_prompt(
+        answer = self._generate_llm_answer(
             question=question,
             context_docs=retrieved_docs,
-            target_language="en"
-        )
-
-        try:
-            response = requests.post(
-                "http://localhost:11434/api/generate",
-                json={
-                    "model": "llama3:latest",
-                    "prompt": prompt,
-                    "stream": True
-                },
-                stream=True,
-                timeout=120
-            )
-
-            response.raise_for_status()
-
-            # ✅ English: direct fast streaming
-            if target_language == "en":
-                for line in response.iter_lines():
-                    if not line:
-                        continue
-
-                    try:
-                        data = json.loads(line.decode("utf-8"))
-                        token = data.get("response", "")
-
-                        if token:
-                            yield token
-
-                        if data.get("done"):
-                            break
-
-                    except json.JSONDecodeError:
-                        continue
-
-                return
-
-            # ✅ Other languages: collect English answer first
-            full_answer = ""
-
-            for line in response.iter_lines():
-                if not line:
-                    continue
-
-                try:
-                    data = json.loads(line.decode("utf-8"))
-                    full_answer += data.get("response", "")
-
-                    if data.get("done"):
-                        break
-
-                except json.JSONDecodeError:
-                    continue
-
-            # ✅ Translate English answer to selected language
-            try:
-                translated_answer = self.translator.translate(
-                    full_answer,
-                    target_lang=target_language,
-                    source_lang="auto"
-                )
-            except Exception:
-                translated_answer = full_answer
-
-            # ✅ Stream translated answer character by character
-            for char in translated_answer:
-                yield char
-
-        except Exception as e:
-            yield f"Ollama error: {e}"
-
-    def _generate_llm_answer(self, question, context_docs, target_language="en"):
-        prompt = self._build_prompt(
-            question=question,
-            context_docs=context_docs,
             target_language=target_language
         )
 
-        try:
-            response = requests.post(
-                "http://localhost:11434/api/generate",
-                json={
-                    "model": "llama3:latest",
-                    "prompt": prompt,
-                    "stream": False
-                },
-                timeout=120
-            )
-
-            response.raise_for_status()
-            data = response.json()
-
-            answer = data.get("response", "No response from Ollama.")
-
-            # ✅ Force translation if selected language is not English
-            if target_language != "en":
-                answer = self.translator.translate(
-                    answer,
-                    target_lang=target_language,
-                    source_lang="auto"
-                )
-
-            return answer
-
-        except Exception as e:
-            return f"Ollama error: {e}"
+        for char in answer:
+            yield char
 
     def _format_sources(self, docs, metas, distances):
         sources = []
@@ -356,5 +268,5 @@ class RAGEngine:
             "supported_languages": list(self.translator.supported_languages.keys()),
             "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
             "vector_dim": self.embedding_dim,
-            "llm_model": "llama3:latest"
+            "llm_model": "gemini-1.5-flash"
         }

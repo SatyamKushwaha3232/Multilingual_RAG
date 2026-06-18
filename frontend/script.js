@@ -373,7 +373,7 @@ async function handleQuery() {
                 finalAnswer += char;
                 textBox.innerHTML = formatAnswer(finalAnswer);
                 scrollToBottom();
-                await sleep(8);
+                await sleep(2);
             }
         }
 
@@ -381,11 +381,33 @@ async function handleQuery() {
             finalAnswer = "No answer generated.";
             textBox.innerHTML = finalAnswer;
         }
+        let sources = [];
+
+        try {
+            const sourceFormData = new FormData();
+            sourceFormData.append("question", question);
+            sourceFormData.append("language", languageSelect.value);
+
+            const sourceResponse = await fetch("/query", {
+                method: "POST",
+                body: sourceFormData
+            });
+
+            const sourceData = await sourceResponse.json();
+            sources = sourceData.sources || [];
+
+            const sourcesHtml = renderSources(sources);
+            if (sourcesHtml) {
+                assistantMsg.querySelector(".message-body").insertAdjacentHTML("beforeend", sourcesHtml);
+            }
+        } catch (sourceError) {
+            console.error("Source fetch failed:", sourceError);
+        }
 
         chatHistory.push({
             role: "assistant",
             text: finalAnswer,
-            sources: []
+            sources
         });
 
         saveChatHistory();
@@ -488,11 +510,30 @@ function clearChat() {
 
     if (chatWindow) {
         chatWindow.innerHTML = "";
-    }
 
-    if (welcomeCard) {
-        welcomeCard.style.display = "block";
-        chatWindow.appendChild(welcomeCard);
+        const welcome = document.createElement("div");
+        welcome.className = "welcome-card";
+        welcome.id = "welcomeCard";
+        welcome.innerHTML = `
+            <div class="welcome-icon">🤖</div>
+            <h2>Welcome to RAG Chat</h2>
+            <p>Ask questions from uploaded documents and get source-aware answers.</p>
+            <div class="suggestions">
+                <button class="suggestion-btn">Summarize this document</button>
+                <button class="suggestion-btn">Main points batao</button>
+                <button class="suggestion-btn">Explain like I am a beginner</button>
+            </div>
+        `;
+
+        chatWindow.appendChild(welcome);
+
+        welcome.querySelectorAll(".suggestion-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                questionInput.value = btn.textContent.trim();
+                autoResizeTextarea();
+                questionInput.focus();
+            });
+        });
     }
 
     updateQueryCount();
@@ -588,7 +629,7 @@ function renderDocuments(documents) {
         `;
 
         item.querySelector(".delete-doc-btn")?.addEventListener("click", () => {
-            deleteLocalDocument(doc.filename);
+            deleteDocument(doc.filename);
         });
 
         uploadsList.appendChild(item);
@@ -930,4 +971,25 @@ function getUploadedDocuments() {
     } catch {
         return [];
     }
+}
+
+function exportChatAsText() {
+    if (!chatHistory.length) {
+        alert("No chat history to export.");
+        return;
+    }
+
+    const content = chatHistory
+        .map(msg => `${msg.role.toUpperCase()}:\n${msg.text}`)
+        .join("\n\n------------------\n\n");
+
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "rag-chat-history.txt";
+    a.click();
+
+    URL.revokeObjectURL(url);
 }

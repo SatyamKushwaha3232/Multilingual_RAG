@@ -188,9 +188,25 @@ async def get_languages():
 
 @app.get("/documents")
 async def get_documents():
+    documents = []
+
+    for filename in os.listdir(DATA_DIR):
+        file_path = os.path.join(DATA_DIR, filename)
+
+        if os.path.isfile(file_path):
+            original_name = filename.split("_", 1)[1] if "_" in filename else filename
+
+            documents.append({
+                "filename": original_name,
+                "chunks": 0,
+                "language": "Unknown",
+                "uploadedAt": "Recently",
+                "sizeKB": round(os.path.getsize(file_path) / 1024, 2)
+            })
+
     return {
-        "documents": [],
-        "message": "Document list tracking not enabled yet."
+        "documents": documents,
+        "count": len(documents)
     }
 
 
@@ -199,9 +215,14 @@ async def clear_database():
     try:
         rag_engine.vector_store.clear()
 
+        for filename in os.listdir(DATA_DIR):
+            file_path = os.path.join(DATA_DIR, filename)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+
         return {
             "status": "success",
-            "message": "Database cleared!"
+            "message": "All documents and vector database cleared!"
         }
 
     except Exception as e:
@@ -220,6 +241,31 @@ async def health():
         "total_chunks": rag_engine.vector_store.get_count()
     }
 
+@app.delete("/documents/{filename}")
+async def delete_document(filename: str):
+    try:
+        deleted = False
+
+        for stored_file in os.listdir(DATA_DIR):
+            if stored_file.endswith(filename) or stored_file == filename:
+                file_path = os.path.join(DATA_DIR, stored_file)
+
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                    deleted = True
+
+        if not deleted:
+            raise HTTPException(status_code=404, detail="Document not found")
+
+        return {
+            "status": "success",
+            "message": f"{filename} deleted successfully"
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn
