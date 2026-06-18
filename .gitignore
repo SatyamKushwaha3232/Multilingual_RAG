@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.env
+*.env
+data/
+vector_db/
+backend/__pycache__/
+backend/test_gemini.py
